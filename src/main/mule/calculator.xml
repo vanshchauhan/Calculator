@@ -21,5 +21,17 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	
+	<flow name="calculatorFlow1" doc:id="2a5f1e7c-4ecc-48ac-a7d7-5a5a32d3acfc" >
+		<http:listener doc:name="Listener" doc:id="5e12e5dd-2494-47ae-b23b-c722152fdd3b" config-ref="HTTP_Listener_config" path="/calculator/multiply"/>
+		<ee:transform doc:name="Transform Message" doc:id="59b7086e-97ff-45d0-88bd-397730219583" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	result: (payload.n1)*(payload.n2)
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
 </mule>
